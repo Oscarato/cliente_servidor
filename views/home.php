@@ -1,6 +1,10 @@
+<?php
+	if( isset($result) && $result == 'Datos Guardados'){
+		echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
+	}
+?>
 
 <section>
-    
     <div clasa="col s12">
         <a href="login" class="btn">Salir</a>
     </div>
@@ -9,44 +13,39 @@
     <div>
         <a class="modal-trigger" href="#search">Buscar</a>
     </div>
-    <table>
-        <thead>
+    <table style="width: 90%; display: table; margin:0 auto">
+        <thead> 
           <tr>
-              <th data-field="id">Nombres</th>
-              <th data-field="name">Apellidos</th>
+              <th data-field="id">Nombre</th>
+              <th data-field="name">Apellido</th>
               <th data-field="price">Cédula</th>
+              <th data-field="price">Dirección</th>
+              <th data-field="price">Telefono</th>
+              <th data-field="price">Celular</th>
+              <th data-field="price">Email</th>
+              <th data-field="price">Acciones</th>
               <th></th>
           </tr>
         </thead>
-
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>1026561971 </td>
-            <td>
-                <a href="buscar/ 1026561971"><i class="material-icons">&#xE254;</i></a>
-                <a class="modal-trigger" href="#delete1" ><i class="material-icons">&#xE872;</i></a>
+     	<?php foreach( $employes as $id => $employe ):?>
+         	<tr>
+         	<td><?php echo $employe->NOMBRE ?></td>
+         	<td><?php echo $employe->APELLIDO ?></td>
+         	<td><?php echo $employe->IDENTIFICACION ?></td>
+         	<td><?php echo $employe->DIRECCION ?></td>
+         	<td><?php echo $employe->TELEFONO ?></td>
+         	<td><?php echo $employe->CELULAR ?></td>
+         	<td><?php echo $employe->EMAIL ?></td>
+            <td colspan="2">
+                <a href="/update/<?php echo $employe->IDENTIFICACION ?>" ><i class="material-icons">&#xE254;</i></a>
+                <a href="buscar/ 1026561971"><i class="material-icons">&#xE872;</i></a>
+                <!--<a class="modal-trigger" href="#delete1" ><i class="material-icons">&#xE872;</i></a>-->
+                
+
             </td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>3.76</td>
-            <td>
-                <a href="buscar/3.76"><i class="material-icons">&#xE254;</i></a>
-                <a class="modal-trigger" href="#delete2"><i class="material-icons">&#xE872;</i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>7.00</td>
-            <td>
-                <a href="buscar/7.00"><i class="material-icons">&#xE254;</i></a>
-                <a class="modal-trigger" href="#delete3"><i class="material-icons">&#xE872;</i></a>
-            </td>
-          </tr>
+      		</tr>
+       	<?php endforeach;?>
         </tbody>
       </table>
 </section>
