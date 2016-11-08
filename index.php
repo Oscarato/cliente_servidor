@@ -18,6 +18,23 @@ Flight::map('notFound', function(){
 
 });
 
+Flight::route('/buscar/@cedula', function($cedula){
+
+    $ch = curl_init();                    // Initiate cURL
+    $url = "http://190.145.101.3:70/WsEmpleados/WsEmpleados.asmx/getEmpleadoJSON"; // Where you want to post data
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_POST, true);  // Tell cURL you want to post something
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "token=43697479252652652d5669727475616c&identificacion=".$cedula); // Define what you want to post
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the output in string format
+    $output = curl_exec ($ch); // Execute
+
+    curl_close ($ch); // Close cURL handle
+
+    echo $output; // Show output
+
+    Flight::render('busqueda', array('cedula' => $cedula));
+});
+
 function home(){
     Flight::render('home');
 }
