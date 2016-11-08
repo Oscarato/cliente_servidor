@@ -1,0 +1,23 @@
+.dropdown-content
+	display none
+	> li
+		display block
+		background lightness(grey, 90)
+		color dark-color
+		transition .3s
+		&:nth-child(2n)
+			background lightness(grey, 95)
+		> a
+			display flex
+			align-items center
+			font-size 14px
+			padding .7rem 1rem
+			.material-icons
+				font-size 20px
+				margin-right .5rem
+		&:hover
+			background primary-color
+			color light-color
+			> a
+				.material-icons
+					color light-color

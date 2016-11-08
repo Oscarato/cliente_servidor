@@ -1,0 +1,41 @@
+.btn
+	align-self center
+	display inline-flex
+	align-items center
+	background button-color
+	color light-color
+	border none
+	padding .7rem 1rem
+	font-size 16px
+	font-weight bold
+	width auto
+	border-radius 4px
+	transition .3s
+	text-transform uppercase
+	margin .2rem
+	cursor pointer
+	&:hover
+		background lightness(button-color, 50)
+		transform scale(1.05)
+		z-index 1
+	.material-icons
+		font-size 20px
+		margin 0 .2rem
+
+.btn-circle
+	display inline-flex
+	align-items center
+	width 45px
+	height 45px
+	min-width 45px
+	background button-color
+	color light-color
+	justify-content center
+	border-radius 50%
+	align-self center
+	margin 0 1rem
+	transition .3s
+	cursor pointer
+	&:hover
+		background lightness(button-color, 50)
+		transform scale(1.1)

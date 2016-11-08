@@ -1,0 +1,1 @@
+.modal{display:none;position:fixed;top:50% !important;left:50%;max-width:90%;width:600px;box-sizing:border-box;transform:translate(-50%,-50%) !important;background:light-color;border-radius:4px;max-height:95vh;overflow:auto;}.modal .modal-content{padding:2rem}.modal .modal-footer{border-top:1px solid #808080;padding:1rem 2rem}

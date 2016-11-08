@@ -1,0 +1,26 @@
+html {
+font-family: sans-serif;
+}
+  
+body{
+    background: #e2e2e2;
+}
+section{
+    margin: 12px;
+}
+
+.login{
+    margin: 103px 79px 37px 96px;
+    background: #fafdfd;
+    padding: 15px;
+    border-radius: 3px;
+}
+
+.login h1{
+    margin: 0px 0 0 5px;
+    font-size: 3.2rem;
+}
+
+.login .submit{
+    text-align: right;
+}

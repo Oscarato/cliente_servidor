@@ -1,0 +1,98 @@
+large  = '(max-width 1200px)'
+medium = '(max-width 900px)'
+small = '(max-width 600px)'
+
+// Columnas
+.row
+	display flex
+	flex-wrap wrap
+	padding 0 .5rem
+	margin 0 -1rem
+	align-items flex-end
+	&.no-wrap
+		flex-wrap no-wrap
+	@media small
+		&.s-wrap
+			flex-wrap wrap
+	.col
+		display block
+		padding 0 .5rem
+		box-sizing border-box
+		&.s1
+			width (100% / 12) * 1
+		&.s2
+			width (100% / 12) * 2
+		&.s3
+			width (100% / 12) * 3
+		&.s4
+			width (100% / 12) * 4
+		&.s5
+			width (100% / 12) * 5
+		&.s6
+			width (100% / 12) * 6
+		&.s7
+			width (100% / 12) * 7
+		&.s8
+			width (100% / 12) * 8
+		&.s9
+			width (100% / 12) * 9
+		&.s10
+			width (100% / 12) * 10
+		&.s11
+			width (100% / 12) * 11
+		&.s12
+			width (100% / 12) * 12
+		// Medium
+		@media medium
+			&.m-s1
+			width (100% / 12) * 1
+			&.m-s2
+				width (100% / 12) * 2
+			&.m-s3
+				width (100% / 12) * 3
+			&.m-s4
+				width (100% / 12) * 4
+			&.m-s5
+				width (100% / 12) * 5
+			&.m-s6
+				width (100% / 12) * 6
+			&.m-s7
+				width (100% / 12) * 7
+			&.m-s8
+				width (100% / 12) * 8
+			&.m-s9
+				width (100% / 12) * 9
+			&.m-s10
+				width (100% / 12) * 10
+			&.m-s11
+				width (100% / 12) * 11
+			&.m-s12
+				width (100% / 12) * 12
+		@media small
+			&.s-s1
+			width (100% / 12) * 1
+			&.s-s2
+				width (100% / 12) * 2
+			&.s-s3
+				width (100% / 12) * 3
+			&.s-s4
+				width (100% / 12) * 4
+			&.s-s5
+				width (100% / 12) * 5
+			&.s-s6
+				width (100% / 12) * 6
+			&.s-s7
+				width (100% / 12) * 7
+			&.s-s8
+				width (100% / 12) * 8
+			&.s-s9
+				width (100% / 12) * 9
+			&.s-s10
+				width (100% / 12) * 10
+			&.s-s11
+				width (100% / 12) * 11
+			&.s-s12
+				width (100% / 12) * 12
+
+.aself-center
+	align-self center
