@@ -27,12 +27,34 @@ if(Flight::request()->url != '/save'){
 function home(){
     if (isset($_GET['search']) && isset($_GET['doc']) && $_GET['doc'] != '') {
         $data = call_method_ws('getEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c', "identificacion"=>$_GET['doc'] ));
-        $employes = json_decode($data['getEmpleadoJSONResult']);
+        $employes =json_decode(html_entity_decode( $data['getAllEmpleadoJSONResult'], ENT_COMPAT, 'UTF-8'));
     }else{
         $data = call_method_ws('getAllEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c'));
-        $employes = json_decode($data['getAllEmpleadoJSONResult']);
+        $employes =json_decode(html_entity_decode( $data['getAllEmpleadoJSONResult'], ENT_COMPAT, 'UTF-8'));
+    } 
+    switch(json_last_error()) {
+        case JSON_ERROR_NONE:
+            echo ' - Sin errores';
+        break;
+        case JSON_ERROR_DEPTH:
+            echo ' - Excedido tamaño máximo de la pila';
+        break;
+        case JSON_ERROR_STATE_MISMATCH:
+            echo ' - Desbordamiento de buffer o los modos no coinciden';
+        break;
+        case JSON_ERROR_CTRL_CHAR:
+            echo ' - Encontrado carácter de control no esperado';
+        break;
+        case JSON_ERROR_SYNTAX:
+            echo ' - Error de sintaxis, JSON mal formado';
+        break;
+        case JSON_ERROR_UTF8:
+            echo ' - Caracteres UTF-8 malformados, posiblemente están mal codificados';
+        break;
+        default:
+            echo ' - Error desconocido';
+        break;
     }
-
     Flight::render('home', array('employes' => $employes) ); 
 }
 
