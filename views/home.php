@@ -29,13 +29,13 @@
         <tbody>
      	<?php foreach( $employes as $id => $employe ):?>
          	<tr> 
-         	<td><?php echo $employe->NOMBRE ?></td>
-         	<td><?php echo $employe->APELLIDO ?></td>
-         	<td><?php echo $employe->IDENTIFICACION ?></td>
-         	<td><?php echo $employe->DIRECCION ?></td>
-         	<td><?php echo $employe->TELEFONO ?></td>
-         	<td><?php echo $employe->CELULAR ?></td>
-         	<td><?php echo $employe->EMAIL ?></td>
+         	<td><?php echo isset($employe->NOMBRE) ? $employe->NOMBRE:$employe->nombres ?></td>
+         	<td><?php echo isset($employe->APELLIDO) ? $employe->APELLIDO:$employe->apellidos ?></td>
+         	<td><?php echo isset($employe->IDENTIFICACION) ? $employe->IDENTIFICACION:$employe->identificacion ?></td>
+         	<td><?php echo isset($employe->DIRECCION) ? $employe->DIRECCION:$employe->direccion ?></td>
+         	<td><?php echo isset($employe->TELEFONO) ? $employe->TELEFONO:$employe->telefono ?></td>
+         	<td><?php echo isset($employe->CELULAR) ? $employe->CELULAR:$employe->celular ?></td>
+         	<td><?php echo isset($employe->EMAIL) ? $employe->EMAIL:$employe->email ?></td>
             <td colspan="2">
                 <a href="#" class="employe-update" data='<?php echo json_encode($employe)?>'><i class="material-icons">&#xE254;</i></a>
                 <a href="#delete<?php echo $id ?>" class="modal-trigger"><i class="material-icons">&#xE872;</i></a>
@@ -43,8 +43,8 @@
                 <div id="delete<?php echo $id ?>" class="modal">
                   <div class="modal-content">
                     <h4>ELIMINAR EMPLEADO </h4>
-                    <p>Nombre: <?php echo $employe->NOMBRE ?></p>
-                    <p>Cédula: <?php echo $employe->IDENTIFICACION ?></p>
+                    <p>Nombre: <?php echo isset($employe->NOMBRE) ? $employe->NOMBRE:$employe->nombres ?></p>
+                    <p>Cédula: <?php echo isset($employe->IDENTIFICACION) ? $employe->IDENTIFICACION:$employe->identificacion?></p>
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Eliminar</a>
@@ -55,43 +55,68 @@
       		</tr>
        	<?php endforeach;?>
 
-       	<div id="update" class="modal">
-	       	<nav style="background: #26a69a;">
-		      <div class="nav-wrapper">
-		          <div style="margin: 0 0 0 31px;"><a href="#!" class="brand-logo">Editar Usuario</a></div>
-		          <ul class="right hide-on-med-and-down">
-		              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
-		          </ul>
-		      </div>
-	    	</nav>
-		<div class="modal-content form-submit">
+            <div id="update" class="modal">
+                <nav style="background: #26a69a;">
+                    <div class="nav-wrapper">
+                        <div style="margin: 0 0 0 31px;"><a href="#!" class="brand-logo">Editar Usuario</a></div>
+                        <ul class="right hide-on-med-and-down">
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="modal-content" id="form-submit">
 
-		</div>
-		 <div class="modal-footer">
-      		<input type="submit" id="submit" name="submit" value="Guardar">
-    	</div> 
-			
-		</div>
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="submit" id="submit" name="submit" class="btn" value="Guardar">
+                    <a href="javascript:location.reload()" id="success" class="btn">Aceptar</a>
+                </div> 
+            </div>
         </tbody>
       </table>
 </section>
-  <div id="search" class="modal">
-    <div class="modal-content">
-        <h4>Buscar</h4>
-        <form class="col s12" method="post" action="buscar">
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Cédula</label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Buscar</a>
-    </div>
-  </div>
+
+<div id="search" class="modal">
+    <ul class="right hide-on-med-and-down">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
+    </ul>
+    <form class="col s12" method="get" action="">
+        <div class="modal-content">
+            <h4>Buscar</h4>
+        <div class="row">
+        <input type="hidden" name="search">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" name="doc" type="number" class="validate">
+            <label for="icon_prefix">Cédula</label>
+        </div>
+        <div class="modal-footer">
+            <input type="submit"  class="btn" value="Buscar">
+        </div>
+    </form>
+</div>
+
+<div id="create" class="modal">
+    <ul class="right hide-on-med-and-down">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
+    </ul>
+    <form class="col s12" method="get" action="">
+        <div class="modal-content">
+            <h4>Crear Empleado</h4>
+        <div class="row">
+        <input type="hidden" name="search">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" name="doc" type="number" class="validate">
+            <label for="icon_prefix">Cédula</label>
+        </div>
+        <div class="modal-footer">
+            <input type="submit"  class="btn" value="Crear">
+        </div>
+    </form>
+</div>
+
 <script>
     $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -99,9 +124,10 @@
         $(".button-collapse").sideNav();
         $('.employe-update').click(function (){
         	$('#submit').show()
+            $('#success').hide()
         	$('#update').modal('open')
         	var data = jQuery.parseJSON($(this).attr('data'))
-        	$('.form-submit').html(form_generate(data))
+        	$('#form-submit').html(form_generate(data))
         	ajax()
         });
     });
@@ -117,12 +143,13 @@
     	$('#submit').click(function(){
 			$.ajax({
 			  method:"POST",
-			  url: "/save", 
+			  url: "<?php echo $url ?>save", 
 			  data: $("#send-data").serialize(),
 			})
 		  	.done(function( msg ) {
-		  	  $('.form-submit').html(msg['response'])
-		  	  $('#submit').hide()
+		  	    $('#form-submit').html(msg['response'])
+		  	    $('#submit').hide()
+                $('#success').show()
 			});
 		});
     }
