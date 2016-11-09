@@ -25,10 +25,9 @@ if(Flight::request()->url != '/save'){
 }
 
 function home(){
-  //$resutl = call_method_ws('getAllEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c'));
-  $result = '[{"NOMBRE":" ADRIANA MARIA ","APELLIDO":"RODRIGUEZ MAMANCHE","IDENTIFICACION":"39804009","DIRECCION":"Cll 1 B Sur No A 01 Gran colom","TELEFONO":"no aplica","CELULAR":"3138948666","EMAIL":"adrianarm02@hotmail.com"},{"NOMBRE":" ANDRES CAMILO ","APELLIDO":"GUZMAN CALDERON","IDENTIFICACION":"1014241073","DIRECCION":"Diag. 82 C no 79 D 42","TELEFONO":"2236498","CELULAR":"3204761535","EMAIL":"andresmmsa@gmail.com"},{"NOMBRE":" CATHERINE  ","APELLIDO":"ACUÑA GALAN","IDENTIFICACION":"52394237","DIRECCION":"CLLE 93 No 60-B60","TELEFONO":"6225537","CELULAR":"3204138512","EMAIL":"N/A"},{"NOMBRE":" IVAN DARIO","APELLIDO":"BECERRA SARMIENTO","IDENTIFICACION":"79787103","DIRECCION":"Calle 127C N 4-46 Apto 406 Alt","TELEFONO":"N/A","CELULAR":"3007878501","EMAIL":""},{"NOMBRE":" JAIRO DAMIAN ","APELLIDO":"ALGARRA MARTINEZ","IDENTIFICACION":"1018474112","DIRECCION":"Calle 188 N 15-42 Berbenal","TELEFONO":"N/A","CELULAR":"3124031420","EMAIL":""},{"NOMBRE":" JENNY PAOLA","APELLIDO":"MENJURA CASTIBLANCO","IDENTIFICACION":"1019027995","DIRECCION":"CARRERA 91 B N 127 C 21","TELEFONO":"6817053","CELULAR":"3176635269","EMAIL":"1519JP@GMAIL.COM"},{"NOMBRE":" JOSE WILLIAM","APELLIDO":"MAHECHA BUITRAGO","IDENTIFICACION":"80812919","DIRECCION":"DG 53 BIS SUR No 3D 57","TELEFONO":"","CELULAR":"3106808267","EMAIL":""},{"NOMBRE":" JUAN SEBASTIAN","APELLIDO":"MORENO MARTINEZ","IDENTIFICACION":"1020761815","DIRECCION":"\tCra 8 N 192 - 60 Apto 305 Lij","TELEFONO":"N/A","CELULAR":"3175126344","EMAIL":"sebogotadc_14@hotmail.com"},{"NOMBRE":" LEONARDO ENRIQUE","APELLIDO":" PEREIRA BOSSA","IDENTIFICACION":"73556503","DIRECCION":"ARJONA CENTRO ","TELEFONO":"N/A","CELULAR":"3107225272","EMAIL":"leopbo@hotmail.com"}]';
-    $employes = json_decode($result);
-    Flight::render('home', array('employes' => $employes)); 
+  $data = call_method_ws('getAllEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c'));
+  $employes = json_decode($data['getAllEmpleadoJSONResult']);
+  Flight::render('home', array('employes' => $employes) ); 
 }
 
 function save(){
@@ -44,7 +43,6 @@ function save(){
     call_method_ws('updateEmpleadoJSON',$params);
     Flight::json( array('response'=>'Datos Guardatos') );
 }
-
 function login(){
     Flight::render('login');
 }

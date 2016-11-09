@@ -28,7 +28,7 @@
         </thead>
         <tbody>
      	<?php foreach( $employes as $id => $employe ):?>
-         	<tr>
+         	<tr> 
          	<td><?php echo $employe->NOMBRE ?></td>
          	<td><?php echo $employe->APELLIDO ?></td>
          	<td><?php echo $employe->IDENTIFICACION ?></td>
