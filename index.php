@@ -30,6 +30,7 @@ function home(){
     $employes = json_decode($result);
     Flight::render('home', array('employes' => $employes)); 
 }
+
 function save(){
     $params = array(  'token'=>'43697479252652652d5669727475616c',
                       'nombres'=>$_POST['NOMBRE'],
@@ -40,25 +41,20 @@ function save(){
                       'celular'=>$_POST['CELULAR'],
                       'email'=>$_POST['EMAIL'],
     );
-    #$resutl = call_method_ws('updateEmpleadoJSON',$params);*/
-    Flight::json( array('response'=>'Datos Guardatos','data'=>json_encode($params) ) );
+    call_method_ws('updateEmpleadoJSON',$params);
+    Flight::json( array('response'=>'Datos Guardatos') );
 }
 
 function login(){
     Flight::render('login');
 }
 
-function call_method_ws($params, $method){
-    $url = "http://190.145.101.3:70/WsEmpleados/WsEmpleados.asmx?wsdl";
-    $client = new nusoap_client($url, true);
+function call_method_ws($method,$params){
+    $url_webservices = "http://190.145.101.3:70/WsEmpleados/WsEmpleados.asmx?wsdl";
+    $client = new nusoap_client($url_webservices, true);
     #$client->setCredentials($token);
     $result = $client->call( $method, $params );
-    if ( $client->getError( ) ){
-        var_dump( $client->getError( ) );
-    }else{
-        $data = array( json_decode($result) );
-    }
-    return $data;
+    return $result;
 }
  
  

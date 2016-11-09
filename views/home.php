@@ -75,7 +75,6 @@
         </tbody>
       </table>
 </section>
-
   <div id="search" class="modal">
     <div class="modal-content">
         <h4>Buscar</h4>
@@ -93,21 +92,19 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Buscar</a>
     </div>
   </div>
-  
-
 <script>
     $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
         $(".button-collapse").sideNav();
         $('.employe-update').click(function (){
+        	$('#submit').show()
         	$('#update').modal('open')
         	var data = jQuery.parseJSON($(this).attr('data'))
         	$('.form-submit').html(form_generate(data))
         	ajax()
         });
     });
-
     function form_generate(data){
     	var html = '<form id="send-data">'
     	$.each(data,function (i,val){
@@ -116,7 +113,6 @@
     	html+= '</form>'
     	return html
     }
-
     function ajax(){
     	$('#submit').click(function(){
 			$.ajax({
@@ -127,7 +123,6 @@
 		  	.done(function( msg ) {
 		  	  $('.form-submit').html(msg['response'])
 		  	  $('#submit').hide()
-
 			});
 		});
     }
