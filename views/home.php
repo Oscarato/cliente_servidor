@@ -1,9 +1,3 @@
-<?php
-	if( isset($result) && $result == 'Datos Guardados'){
-		echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
-	}
-?>
-
 <section>
 
     <nav style="background: #26a69a;">
@@ -43,10 +37,8 @@
          	<td><?php echo $employe->CELULAR ?></td>
          	<td><?php echo $employe->EMAIL ?></td>
             <td colspan="2">
-                <a href="<?php echo $url ?>update/<?php echo $employe->IDENTIFICACION ?>" ><i class="material-icons">&#xE254;</i></a>
+                <a href="#" class="employe-update" data='<?php echo json_encode($employe)?>'><i class="material-icons">&#xE254;</i></a>
                 <a href="#delete<?php echo $id ?>" class="modal-trigger"><i class="material-icons">&#xE872;</i></a>
-                <!--<a class="modal-trigger" href="#delete1" ><i class="material-icons">&#xE872;</i></a>-->
-
                 <!-- Modal Structure Delete 1-->
                 <div id="delete<?php echo $id ?>" class="modal">
                   <div class="modal-content">
@@ -62,13 +54,24 @@
             </td>
       		</tr>
        	<?php endforeach;?>
+
+       	<div id="update" class="modal">
+	       	<nav style="background: #26a69a;">
+		      <div class="nav-wrapper">
+		          <div style="margin: 0 0 0 31px;"><a href="#!" class="brand-logo">Editar Usuario</a></div>
+		          <ul class="right hide-on-med-and-down">
+		              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
+		          </ul>
+		      </div>
+	    	</nav>
+		<div class="modal-content form-submit">
+		</div>
+		</div>
+
         </tbody>
       </table>
 </section>
 
-
-
-   <!-- Modal Structure Delete 3-->
   <div id="search" class="modal">
     <div class="modal-content">
         <h4>Buscar</h4>
@@ -93,5 +96,33 @@
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
         $(".button-collapse").sideNav();
+        $('.employe-update').click(function (){
+        	$('#update').modal('open')
+        	var data = jQuery.parseJSON($(this).attr('data'))
+        	$('.form-submit').html(form_generate(data))
+        	ajax()
+        });
     });
+    
+    function form_generate(data){
+    	var html = '<form id="send-data">'
+    	$.each(data,function (i,val){
+    		html += i+':'+'<input type="text" name="'+i+'" value="'+val+'">'
+    	});
+    	html+= '<input type="submit" id="submit" name="submit" value="Guardar"></form>'
+    	return html
+    }
+
+    function ajax(){
+    	$('#submit').click(function(){
+			$.ajax({
+			  method:"POST",
+			  url: "/save", 
+			  data: $("#send-data").serialize(),
+			})
+		  	.done(function( msg ) {
+		  	  $('.form-submit').html(msg['response'])
+			});
+		});
+    }
 </script>
