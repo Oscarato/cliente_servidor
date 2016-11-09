@@ -6,6 +6,15 @@ require 'flight/Flight.php';
 require_once 'clases/lib/nusoap.php';
 session_start();
 
+global $url;
+
+if ($_SERVER['SERVER_NAME'] == 'localhost') {
+    $url= 'http://localhost/administrador/cliente_servidor/';
+    //$url= 'http://localhost/Revlon/';
+}else{
+    $url= 'http://'.$_SERVER['SERVER_NAME'].'/';
+}
+
 //base de datos
 Flight::register('db', 'PDO', array('mysql:host=localhost;dbname=io.codigos','codigo','codigo2016'));
 //clase paginador
@@ -13,7 +22,7 @@ Flight::register('paginator', 'clases/Paginator');
 
 //partes del body
 Flight::render('header', array('heading' => 'Administrador'), 'header_content');
-Flight::render('layout', array('title' => 'Administrador'));
+Flight::render('layout', array('title' => 'Administrador', 'url' => $url));
 
 Flight::map('notFound', function(){
     // Display custom 404 page

@@ -5,15 +5,20 @@
 ?>
 
 <section>
-    <div clasa="col s12">
-        <a href="login" class="btn">Salir</a>
-    </div>
-    <h1>Bienvenido al Administrador</h1>
-    <h2>Lista de empleados</h2>
-    <div>
-        <a class="modal-trigger" href="#search">Buscar</a>
-    </div>
-    <table style="width: 90%; display: table; margin:0 auto">
+
+    <nav style="background: #26a69a;">
+      <div class="nav-wrapper">
+          <div style="margin: 0 0 0 31px;"><a href="#!" class="brand-logo">ADMINISTRADOR</a></div>
+          <ul class="right hide-on-med-and-down">
+              <li><a class="modal-trigger" href="#search">Buscar</a></li>
+              <li><a href="login">Salir</a></li>
+          </ul>
+      </div>
+    </nav>
+    
+    <div clasa="col s12" style="text-align:center"><h4>Lista de empleados</h4></div>
+    
+    <table style="width: 90%; display: table; margin:0 auto" class="striped">
         <thead> 
           <tr>
               <th data-field="id">Nombre</th>
@@ -38,10 +43,21 @@
          	<td><?php echo $employe->CELULAR ?></td>
          	<td><?php echo $employe->EMAIL ?></td>
             <td colspan="2">
-                <a href="/update/<?php echo $employe->IDENTIFICACION ?>" ><i class="material-icons">&#xE254;</i></a>
-                <a href="buscar/ 1026561971"><i class="material-icons">&#xE872;</i></a>
+                <a href="<?php echo $url ?>update/<?php echo $employe->IDENTIFICACION ?>" ><i class="material-icons">&#xE254;</i></a>
+                <a href="#delete<?php echo $id ?>" class="modal-trigger"><i class="material-icons">&#xE872;</i></a>
                 <!--<a class="modal-trigger" href="#delete1" ><i class="material-icons">&#xE872;</i></a>-->
-                
+
+                <!-- Modal Structure Delete 1-->
+                <div id="delete<?php echo $id ?>" class="modal">
+                  <div class="modal-content">
+                    <h4>ELIMINAR EMPLEADO </h4>
+                    <p>Nombre: <?php echo $employe->NOMBRE ?></p>
+                    <p>Cédula: <?php echo $employe->IDENTIFICACION ?></p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Eliminar</a>
+                  </div>
+                </div>
 
             </td>
       		</tr>
@@ -51,38 +67,6 @@
 </section>
 
 
-   <!-- Modal Structure Delete 1-->
-  <div id="delete1" class="modal">
-    <div class="modal-content">
-      <h4>Eliminar 1</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Eliminar</a>
-    </div>
-  </div>
-
-   <!-- Modal Structure Delete 2-->
-  <div id="delete2" class="modal">
-    <div class="modal-content">
-      <h4>Eliminar 2</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Eliminar</a>
-    </div>
-  </div>
-
-   <!-- Modal Structure Delete 3-->
-  <div id="delete3" class="modal">
-    <div class="modal-content">
-      <h4>Eliminar 3</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Eliminar</a>
-    </div>
-  </div>
 
    <!-- Modal Structure Delete 3-->
   <div id="search" class="modal">
@@ -105,8 +89,9 @@
   
 
 <script>
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+        $(".button-collapse").sideNav();
+    });
 </script>
