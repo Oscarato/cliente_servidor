@@ -4,8 +4,9 @@
       <div class="nav-wrapper">
           <div style="margin: 0 0 0 31px;"><a href="#!" class="brand-logo">ADMINISTRADOR</a></div>
           <ul class="right hide-on-med-and-down">
-              <li><a class="modal-trigger" href="#search">Buscar</a></li>
-              <li><a href="login">Salir</a></li>
+                <li><a class="modal-trigger" href="#create_employee">Crear</a></li>
+                <li><a class="modal-trigger" href="#search">Buscar</a></li>
+                <li><a href="login">Salir</a></li>
           </ul>
       </div>
     </nav>
@@ -84,12 +85,12 @@
     <form class="col s12" method="get" action="">
         <div class="modal-content">
             <h4>Buscar</h4>
-        <div class="row">
-        <input type="hidden" name="search">
-        <div class="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="icon_prefix" name="doc" type="number" class="validate">
-            <label for="icon_prefix">Cédula</label>
+            <input type="hidden" name="search">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" name="doc" type="number" class="validate">
+                <label for="icon_prefix">Cédula</label>
+            </div>
         </div>
         <div class="modal-footer">
             <input type="submit"  class="btn" value="Buscar">
@@ -97,19 +98,29 @@
     </form>
 </div>
 
-<div id="create" class="modal">
+<div id="create_employee" class="modal">
     <ul class="right hide-on-med-and-down">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">X</a>
     </ul>
-    <form class="col s12" method="get" action="">
+    <form class="col s12" method="post" action="">
         <div class="modal-content">
             <h4>Crear Empleado</h4>
-        <div class="row">
-        <input type="hidden" name="search">
-        <div class="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="icon_prefix" name="doc" type="number" class="validate">
-            <label for="icon_prefix">Cédula</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="hidden" name="create">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" name="doc" type="number" class="validate">
+                    <label for="icon_prefix">Cédula</label>
+                    <input type="text" name="token">
+                    <input type="text" name="nombres">
+                    <input type="text" name="apellidos">
+                    <input type="text" name="identificacion">
+                    <input type="text" name="direccion">
+                    <input type="text" name="telefono">
+                    <input type="text" name="celular">
+                    <input type="text" name="email">
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <input type="submit"  class="btn" value="Crear">
