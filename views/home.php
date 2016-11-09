@@ -65,9 +65,13 @@
 		      </div>
 	    	</nav>
 		<div class="modal-content form-submit">
-		</div>
-		</div>
 
+		</div>
+		 <div class="modal-footer">
+      		<input type="submit" id="submit" name="submit" value="Guardar">
+    	</div> 
+			
+		</div>
         </tbody>
       </table>
 </section>
@@ -103,13 +107,13 @@
         	ajax()
         });
     });
-    
+
     function form_generate(data){
     	var html = '<form id="send-data">'
     	$.each(data,function (i,val){
     		html += i+':'+'<input type="text" name="'+i+'" value="'+val+'">'
     	});
-    	html+= '<input type="submit" id="submit" name="submit" value="Guardar"></form>'
+    	html+= '</form>'
     	return html
     }
 
@@ -122,6 +126,8 @@
 			})
 		  	.done(function( msg ) {
 		  	  $('.form-submit').html(msg['response'])
+		  	  $('#submit').hide()
+
 			});
 		});
     }
