@@ -7,7 +7,7 @@ session_start();
 global $url;
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    $url= 'http://localhost/administrador/cliente_servidor/';
+    $url= 'http://localhost/cliente_servidor/';
     //$url= 'http://localhost/Revlon/';
 }else{
     $url= 'http://'.$_SERVER['SERVER_NAME'].'/';
@@ -25,20 +25,26 @@ if(Flight::request()->url != '/save'){
 }
 
 function home(){
-  $data = call_method_ws('getAllEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c'));
-  $employes = json_decode($data['getAllEmpleadoJSONResult']);
-  Flight::render('home', array('employes' => $employes) ); 
+    if (isset($_GET['search']) && isset($_GET['doc']) && $_GET['doc'] != '') {
+        $data = call_method_ws('getEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c', "identificacion"=>$_GET['doc'] ));
+        $employes = json_decode($data['getEmpleadoJSONResult']);
+    }else{
+        $data = call_method_ws('getAllEmpleadoJSON',array( "token" => '43697479252652652d5669727475616c'));
+        $employes = json_decode($data['getAllEmpleadoJSONResult']);
+    }
+
+    Flight::render('home', array('employes' => $employes) ); 
 }
 
 function save(){
     $params = array(  'token'=>'43697479252652652d5669727475616c',
-                      'nombres'=>$_POST['NOMBRE'],
-                      'apellidos'=>$_POST['APELLIDO'],
-                      'identificacion'=>$_POST['IDENTIFICACION'],
-                      'direccion'=>$_POST['DIRECCION'],
-                      'telefono'=>$_POST['TELEFONO'],
-                      'celular'=>$_POST['CELULAR'],
-                      'email'=>$_POST['EMAIL'],
+                      'nombres'=>isset($_POST['NOMBRE']) ? $_POST['NOMBRE']:$_POST['nombres'],
+                      'apellidos'=>isset($_POST['APELLIDO']) ? $_POST['APELLIDO']:$_POST['apellidos'],
+                      'identificacion'=>isset($_POST['IDENTIFICACION']) ? $_POST['IDENTIFICACION']:$_POST['identificacion'],
+                      'direccion'=>isset($_POST['DIRECCION']) ? $_POST['DIRECCION']:$_POST['direccion'],
+                      'telefono'=>isset($_POST['TELEFONO']) ? $_POST['TELEFONO']:$_POST['telefono'],
+                      'celular'=>isset($_POST['CELULAR']) ? $_POST['CELULAR']:$_POST['celular'],
+                      'email'=>isset($_POST['EMAIL']) ? $_POST['EMAIL']:$_POST['email'],
     );
     call_method_ws('updateEmpleadoJSON',$params);
     Flight::json( array('response'=>'Datos Guardatos') );
